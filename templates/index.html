@@ -1,0 +1,29 @@
+{% extends 'shared/base.html' %}
+
+{% block h1_content %}
+    {% if trucks %}
+        All Trucks
+    {% else %}
+        <a style="color: white" href="{% url 'create page' %}">Add The First Truck</a>
+    {% endif %}
+{% endblock %}
+
+{% block base_content %}
+    <div style="opacity: 90%" class="d-flex p-3">
+
+        {% for truck in trucks %}
+
+            <div class="card m-3" style="width: 18rem;">
+                <img class="card-img-top" src="{{ truck.image.url }}" alt="truck_img">
+                <div class="card-body">
+                    <h5 class="card-title"> NICKNAME: {{ truck.nickname }}</h5>
+                    <h6> MAKE: {{ truck.make }}</h6>
+                    <h6> MODEL: {{ truck.model }}</h6>
+                </div>
+                <a href="{% url 'details page' truck.id %}" class="btn btn-dark btn-lg">See Details</a>
+            </div>
+
+        {% endfor %}
+
+    </div>
+{% endblock %}

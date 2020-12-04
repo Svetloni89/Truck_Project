@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trucks</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="{% static '/images/site.png' %}">
+</head>
+<body style="background: url({% static 'images/background.jpg' %}); background-size: 100%;">
+
+{% include 'patials/header.html' %}
+
+
+    <h1 class="text-center" style="color: white">{% block h1_content %} {% endblock %}</h1>
+
+    {% block base_content %}
+
+    {% endblock %}
+
+
+
+{% include 'patials/foother.html' %}
+
+</body>
+</html>

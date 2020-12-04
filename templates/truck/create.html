@@ -1,0 +1,34 @@
+{% extends 'shared/base.html' %}
+
+{% block h1_content %} Create Truck {% endblock %}
+
+{% block base_content %}
+    <form style="opacity: 80%" class="col-lg-6 offset-lg-3" method="POST"
+          action="{% block action %} {% url 'create page' %} {% endblock %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h6 style="color: white">{{ form.errors }}</h6>
+        <div class="form-group">
+
+            <label for="nickname" style="color: aliceblue">Nickname</label>
+            {{ form.nickname }}
+
+            <label for="make" style="color: aliceblue">Make</label>
+            {{ form.make }}
+
+            <label for="model" style="color: aliceblue">Model</label>
+            {{ form.model }}
+
+            <label for="description" style="color: aliceblue">Description</label>
+            {{ form.description }}
+
+            <label for="description" style="color: aliceblue">Price</label>
+            {{ form.price }}
+
+            <label for="img_url" style="color: aliceblue">Image</label>
+            {{ form.image }}
+
+        </div>
+        <input type="submit" value="{% block btn_value %} Create {% endblock %}" class="btn btn-dark btn-lg">
+        <a class="btn btn-dark" href="javascript:history.back()">Back</a>
+    </form>
+{% endblock %}
