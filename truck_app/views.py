@@ -15,6 +15,7 @@ def index(request):
     return render(request, 'index.html', context)
 
 
+@login_required
 def create(request):
     if request.method == 'GET':
         context = {
@@ -36,6 +37,7 @@ def create(request):
         return render(request, 'truck/create.html', context)
 
 
+@login_required
 def details_comment(request, pk):
     truck = Truck.objects.get(pk=pk)
     comments = truck.comment_set.all().order_by('-id')
@@ -62,6 +64,7 @@ def details_comment(request, pk):
         return render(request, 'truck/details.html', context)
 
 
+@login_required
 def like_truck(request, pk):
     like = Like.objects.filter(owner_id=request.user.id, truck_id=pk).first()
     if like:
@@ -73,6 +76,7 @@ def like_truck(request, pk):
     return redirect('details page', pk)
 
 
+@login_required
 def edit(request, pk):
     truck = Truck.objects.get(pk=pk)
     if request.method == 'GET':
@@ -93,6 +97,7 @@ def edit(request, pk):
         return render(request, 'truck/edit.html', context)
 
 
+@login_required
 def delete(request, pk):
     truck = Truck.objects.get(pk=pk)
     if request.method == 'GET':

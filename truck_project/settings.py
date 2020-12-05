@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'truck_app',
+    'truck_auth',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

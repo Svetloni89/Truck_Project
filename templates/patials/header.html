@@ -6,8 +6,19 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+            {% if not user.is_authenticated %}
                 <li class="nav-item {% if page_name == 'home page' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'home page' %}">Home</a>
+                </li>
+                <li class="nav-item {% if page_name == 'login page' %} active {% endif %}">
+                    <a class="nav-link" href="{% url 'login' %}">LogIn</a>
+                </li>
+                <li class="nav-item {% if page_name == 'register page' %} active {% endif %}">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+            {% else %}
+                <li class="nav-item {% if page_name == 'profile page' %} active {% endif %}" >
+                    <a class="nav-link" href="{% url 'profile' %}" >Welcome {{ user.username }}</a>
                 </li>
                 <li class="nav-item {% if page_name == 'home page' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'home page' %}">Home</a>
@@ -15,6 +26,10 @@
                 <li class="nav-item {% if page_name == 'create page' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'create page' %}">Add new Truck</a>
                 </li>
+                <li class="nav-item {% if page_name == 'logout page' %} active {% endif %}">
+                    <a class="nav-link" href="{% url 'logout' %}">LogOut</a>
+                </li>
+            {% endif %}
         </ul>
     </div>
 

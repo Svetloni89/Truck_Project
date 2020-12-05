@@ -1,0 +1,46 @@
+{% extends 'shared/base.html' %}
+
+{% block h1_content %}
+    Hello, {{ user.username }}!
+{% endblock %}
+
+{% block base_content %}
+
+    <div class="w-50 m-auto">
+        <form style="opacity: 80%" class="col-lg-6 offset-lg-3" method="POST" action="{% url 'profile' %}">
+            {% csrf_token %}
+            <h6 style="color: white">{{ form.phone_number.errors }}</h6>
+            <div class="form-group">
+                <label for="nickname" style="color: aliceblue">Phone number</label>
+                {{ form.phone_number }}
+                <label for="make" style="color: aliceblue">City</label>
+                {{ form.city }}
+            </div>
+            <input type="submit" value="Edit" class="btn btn-dark">
+            <a class="btn btn-dark" href="{% url 'home page' %}">Back</a>
+        </form>
+    </div>
+    <hr>
+    {% if trucks %}
+        <h2 class='text-center' style="color: white">Your Trucks</h2>
+        <div class="row" style="opacity: 80%">
+            {% for truck in trucks %}
+                <div class="card m-3"
+                     style="width: 30rem; background: url({{ truck.image.url }}); background-size: 150%;">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ truck.make }} {{ truck.model }},
+                            /Likes: {{ truck.like_set.count }}/</h4>
+                        <h5 class="card-text">Price: {{ truck.price }} $</h5>
+                        <a href="{% url 'details page' truck.id %}" class="btn btn-dark">Details</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center" style="color: white">
+            <h2>No Trucks</h2>
+            <a href="{% url 'create page' %}" class="btn btn-dark btn-lg">Add New Truck</a>
+        </div>
+    {% endif %}
+
+{% endblock %}

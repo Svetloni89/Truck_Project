@@ -1,0 +1,28 @@
+{% extends 'shared/base.html' %}
+
+{% block auth_h1 %}
+    Register
+{% endblock %}
+
+{% block auht_base %}
+    <div class="container`">
+        <form style="opacity: 80%" class="col-lg-6 offset-lg-3" method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+            <h6 style="color: white">{{ form.errors }}</h6>
+            <div class="form-group">
+
+                <label for="nickname" style="color: aliceblue">Username</label>
+                {{ form.username }}
+
+                <label for="make" style="color: aliceblue">Password</label>
+                {{ form.password1 }}
+
+                <label for="make" style="color: aliceblue">Confirm Password</label>
+                {{ form.password2 }}
+
+            </div>
+            <input type="submit" value="Register" class="btn btn-dark btn-lg">
+            <a class="btn btn-dark" href="javascript:history.back()">Back</a>
+        </form>
+    </div>
+{% endblock %}
