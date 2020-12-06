@@ -6,7 +6,7 @@
 
 {% block auht_base %}
     <div class="container`">
-        <form style="opacity: 80%" class="col-lg-6 offset-lg-3" method="POST" action="{% url 'register' %}">
+        <form style="opacity: 80%" class="col-lg-6 offset-lg-3" method="POST" action="{% url 'register user' %}">
             {% csrf_token %}
             <h6 style="color: white">{{ form.errors }}</h6>
             <div class="form-group">

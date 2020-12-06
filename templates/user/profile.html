@@ -7,7 +7,7 @@
 {% block base_content %}
 
     <div class="w-50 m-auto">
-        <form style="opacity: 80%" class="col-lg-6 offset-lg-3" method="POST" action="{% url 'profile' %}">
+        <form style="opacity: 80%" class="col-lg-6 offset-lg-3" method="POST" action="{% url 'profile user' %}">
             {% csrf_token %}
             <h6 style="color: white">{{ form.phone_number.errors }}</h6>
             <div class="form-group">

@@ -30,6 +30,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
+    'truck_api',
     'truck_app',
     'truck_auth',
     'django.contrib.admin',

@@ -23,5 +23,7 @@ media_files = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('truck/', include('truck_app.urls')),
-    path('accounts/', include('truck_auth.urls'))
+    path('accounts/', include('truck_auth.urls')),
+    path('rest-api/', include('rest_framework.urls')),
+    path('truck-api/', include('truck_api.urls')),
 ] + media_files

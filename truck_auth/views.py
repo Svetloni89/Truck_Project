@@ -76,7 +76,7 @@ def profile_user(request):
         form = UserProfileForm(request.POST, instance=request.user.userprofile)
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            return redirect('profile user')
         context = {
             'profile': request.user.userprofile,
             'trucks': request.user.truck_set.all().order_by('-id'),

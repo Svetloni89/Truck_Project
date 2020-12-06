@@ -11,14 +11,14 @@
                     <a class="nav-link" href="{% url 'home page' %}">Home</a>
                 </li>
                 <li class="nav-item {% if page_name == 'login page' %} active {% endif %}">
-                    <a class="nav-link" href="{% url 'login' %}">LogIn</a>
+                    <a class="nav-link" href="{% url 'login user' %}">LogIn</a>
                 </li>
                 <li class="nav-item {% if page_name == 'register page' %} active {% endif %}">
-                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    <a class="nav-link" href="{% url 'register user' %}">Register</a>
                 </li>
             {% else %}
                 <li class="nav-item {% if page_name == 'profile page' %} active {% endif %}" >
-                    <a class="nav-link" href="{% url 'profile' %}" >Welcome {{ user.username }}</a>
+                    <a class="nav-link" href="{% url 'profile user' %}" >Welcome {{ user.username }}</a>
                 </li>
                 <li class="nav-item {% if page_name == 'home page' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'home page' %}">Home</a>
@@ -27,7 +27,7 @@
                     <a class="nav-link" href="{% url 'create page' %}">Add new Truck</a>
                 </li>
                 <li class="nav-item {% if page_name == 'logout page' %} active {% endif %}">
-                    <a class="nav-link" href="{% url 'logout' %}">LogOut</a>
+                    <a class="nav-link" href="{% url 'logout user' %}">LogOut</a>
                 </li>
             {% endif %}
         </ul>
