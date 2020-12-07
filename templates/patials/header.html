@@ -1,36 +1,38 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <img style="width: 90px;" src="{% static 'images/logo.png' %}" alt="truck">
-    <div class="navbar-brand">TrucksFans</div>
+        <img style="width: 90px;" src="{% static 'images/logo.png' %}" alt="truck">
+        <div class="navbar-brand">TrucksFans</div>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            {% if not user.is_authenticated %}
-                <li class="nav-item {% if page_name == 'home page' %} active {% endif %}">
-                    <a class="nav-link" href="{% url 'home page' %}">Home</a>
-                </li>
-                <li class="nav-item {% if page_name == 'login page' %} active {% endif %}">
-                    <a class="nav-link" href="{% url 'login user' %}">LogIn</a>
-                </li>
-                <li class="nav-item {% if page_name == 'register page' %} active {% endif %}">
-                    <a class="nav-link" href="{% url 'register user' %}">Register</a>
-                </li>
-            {% else %}
-                <li class="nav-item {% if page_name == 'profile page' %} active {% endif %}" >
-                    <a class="nav-link" href="{% url 'profile user' %}" >Welcome {{ user.username }}</a>
-                </li>
-                <li class="nav-item {% if page_name == 'home page' %} active {% endif %}">
-                    <a class="nav-link" href="{% url 'home page' %}">Home</a>
-                </li>
-                <li class="nav-item {% if page_name == 'create page' %} active {% endif %}">
-                    <a class="nav-link" href="{% url 'create page' %}">Add new Truck</a>
-                </li>
-                <li class="nav-item {% if page_name == 'logout page' %} active {% endif %}">
-                    <a class="nav-link" href="{% url 'logout user' %}">LogOut</a>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                {% if not user.is_authenticated %}
+                    <li class="nav-item {% if page_name == 'home page' %} active {% endif %}">
+                        <a class="nav-link" href="{% url 'home page' %}">Home</a>
+                    </li>
+                    <li class="nav-item {% if page_name == 'login page' %} active {% endif %}">
+                        <a class="nav-link" href="{% url 'login user' %}">LogIn</a>
+                    </li>
+                    <li class="nav-item {% if page_name == 'register page' %} active {% endif %}">
+                        <a class="nav-link" href="{% url 'register user' %}">Register</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item {% if page_name == 'profile page' %} active {% endif %}">
+                        <a class="nav-link" href="{% url 'profile user' %}">Welcome {{ user.username }}</a>
+                    </li>
+                    <li class="nav-item {% if page_name == 'home page' %} active {% endif %}">
+                        <a class="nav-link" href="{% url 'home page' %}">Home</a>
+                    </li>
+                    <li class="nav-item {% if page_name == 'create page' %} active {% endif %}">
+                        <a class="nav-link" href="{% url 'create page' %}">Add new Truck</a>
+                    </li>
+                    <li class="nav-item {% if page_name == 'logout page' %} active {% endif %}">
+                        <a class="nav-link" href="{% url 'logout user' %}">LogOut</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
 
-</nav>
+    </nav>
+</header>

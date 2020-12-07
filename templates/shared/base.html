@@ -6,45 +6,55 @@
     <title>Trucks</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="icon" type="image/png" href="{% static '/images/site.png' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body style="background: url({% static 'images/background.jpg' %}); background-size: 100%;">
 
-{% include 'patials/header.html' %}
+<div class="for_the_sticky_footer">
 
-{% if user.is_authenticated %}
+    <main>
 
-    <h1 class="text-center" style="color: white">{% block h1_content %} {% endblock %}</h1>
+        {% include 'patials/header.html' %}
 
-    {% block base_content %}
+        {% if user.is_authenticated %}
 
-    {% endblock %}
+            <h1 class="text-center" style="color: white">{% block h1_content %} {% endblock %}</h1>
 
-{% else %}
+            {% block base_content %}
 
-    <h1 class="text-center" style="color: white"> {% block auth_h1 %} Please authenticate for views {% endblock %} </h1>
+            {% endblock %}
 
-    {% block auht_base %}
+        {% else %}
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="m-auto d-flex justify-content-center">
-                        <div class="m-5">
-                            <a class="btn btn-dark btn-lg" href="{% url 'login user' %}">Have a account</a>
-                        </div>
-                        <div class="m-5">
-                            <a class="btn btn-dark btn-lg" href="{% url 'register user' %}">Have`t a account</a>
+            <h1 class="text-center" style="color: white"> {% block auth_h1 %} Please authenticate for
+                views {% endblock %} </h1>
+
+            {% block auht_base %}
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <div class="m-auto d-flex justify-content-center">
+                                <div class="m-5">
+                                    <a class="btn btn-dark btn-lg" href="{% url 'login user' %}">Have a account</a>
+                                </div>
+                                <div class="m-5">
+                                    <a class="btn btn-dark btn-lg" href="{% url 'register user' %}">Have`t a account</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-    {% endblock %}
+            {% endblock %}
 
-{% endif %}
+        {% endif %}
 
-{% include 'patials/foother.html' %}
+    </main>
+
+    {% include 'patials/foother.html' %}
+
+</div>
 
 </body>
 </html>
