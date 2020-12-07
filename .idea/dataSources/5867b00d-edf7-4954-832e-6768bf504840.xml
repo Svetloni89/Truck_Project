@@ -820,7 +820,7 @@ false posixrules
     <database id="9" parent="1" name="trucks_db">
       <ObjectId>20618</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>3169</IntrospectionStateNumber>
+      <IntrospectionStateNumber>3180</IntrospectionStateNumber>
       <Relations>sequence|table|20619|20621|1
 sequence|table|20630|20632|1
 sequence|table|20640|20642|1
@@ -904,7 +904,7 @@ UC/10
 </Acl>
       <StateNumber>276</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>3170</IntrospectionStateNumber>
+      <IntrospectionStateNumber>3181</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="24" parent="9" name="plpgsql">
