@@ -59,7 +59,7 @@
                     <div>Comments:</div>
                     {% for comment in comments %}
                         <div class="box">
-                            <h6><em> {{ comment.owner.username }}: {{ comment.text }}</em></h6>
+                            <h6><em>{{ comment.time }} ---> {{ comment.owner.username }}: {{ comment.text }}</em></h6>
                         </div>
                     {% endfor %}
                 </div>

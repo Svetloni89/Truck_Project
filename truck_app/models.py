@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.db import models
 from truck_app.validators import validator_comment_end, validator_price_is_digit
@@ -20,6 +22,7 @@ class Truck(models.Model):
 class Comment(models.Model):
     truck = models.ForeignKey(Truck, on_delete=models.CASCADE)
     text = models.CharField(blank=False, max_length=100, validators=(validator_comment_end,))
+    time = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
