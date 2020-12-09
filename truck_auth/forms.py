@@ -43,6 +43,6 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         exclude = ('user',)
         widgets = {
-            'phone_number': forms.TextInput(attrs={'placeholder': 'The phone number should contain only numeric', }),
-            'city': forms.TextInput(attrs={'placeholder': 'The city of locations', })
+            'phone_number': forms.TextInput(attrs={'placeholder': 'Only numeric', }),
+            'city': forms.TextInput(attrs={'placeholder': 'City of locations', })
         }

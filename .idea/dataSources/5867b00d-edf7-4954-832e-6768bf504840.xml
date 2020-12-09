@@ -815,12 +815,13 @@ false posixrules
       <ObjectId>13318</ObjectId>
       <Comment>default administrative connection database</Comment>
       <Owner>postgres</Owner>
+      <IntrospectionStateNumber>3251</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <database id="9" parent="1" name="trucks_db">
       <ObjectId>20618</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>3197</IntrospectionStateNumber>
+      <IntrospectionStateNumber>3286</IntrospectionStateNumber>
       <Relations>sequence|table|20619|20621|1
 sequence|table|20630|20632|1
 sequence|table|20640|20642|1
@@ -904,7 +905,7 @@ UC/10
 </Acl>
       <StateNumber>276</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>3198</IntrospectionStateNumber>
+      <IntrospectionStateNumber>3287</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="24" parent="9" name="plpgsql">
@@ -1134,9 +1135,8 @@ UC/10
     </table>
     <table id="59" parent="23" name="truck_app_comment">
       <ObjectId>20801</ObjectId>
-      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
-      <StateNumber>2519</StateNumber>
+      <StateNumber>3199</StateNumber>
     </table>
     <table id="60" parent="23" name="truck_app_like">
       <ObjectId>20884</ObjectId>
@@ -2011,7 +2011,14 @@ model</ColNames>
       <StateNumber>2519</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="168" parent="59" name="truck_app_comment_pkey">
+    <column id="168" parent="59" name="time">
+      <Position>5</Position>
+      <DataType>timestamp with time zone|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>3199</StateNumber>
+      <TypeId>1184</TypeId>
+    </column>
+    <index id="169" parent="59" name="truck_app_comment_pkey">
       <ObjectId>20808</ObjectId>
       <StateNumber>1923</StateNumber>
       <ColNames>id</ColNames>
@@ -2021,7 +2028,7 @@ model</ColNames>
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <index id="169" parent="59" name="truck_app_comment_truck_id_1e2e31c1">
+    <index id="170" parent="59" name="truck_app_comment_truck_id_1e2e31c1">
       <ObjectId>20815</ObjectId>
       <StateNumber>1923</StateNumber>
       <ColNames>truck_id</ColNames>
@@ -2029,7 +2036,7 @@ model</ColNames>
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <index id="170" parent="59" name="truck_app_comment_owner_id_8b72ee8d">
+    <index id="171" parent="59" name="truck_app_comment_owner_id_8b72ee8d">
       <ObjectId>20935</ObjectId>
       <StateNumber>2519</StateNumber>
       <ColNames>owner_id</ColNames>
@@ -2037,14 +2044,14 @@ model</ColNames>
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="171" parent="59" name="truck_app_comment_pkey">
+    <key id="172" parent="59" name="truck_app_comment_pkey">
       <ObjectId>20809</ObjectId>
       <StateNumber>1894</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>truck_app_comment_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="172" parent="59" name="truck_app_comment_truck_id_1e2e31c1_fk_truck_app_truck_id">
+    <foreign-key id="173" parent="59" name="truck_app_comment_truck_id_1e2e31c1_fk_truck_app_truck_id">
       <ObjectId>20810</ObjectId>
       <StateNumber>1894</StateNumber>
       <ColNames>truck_id</ColNames>
@@ -2056,7 +2063,7 @@ model</ColNames>
       <RefKeyName>truck_app_truck_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="173" parent="59" name="truck_app_comment_owner_id_8b72ee8d_fk_auth_user_id">
+    <foreign-key id="174" parent="59" name="truck_app_comment_owner_id_8b72ee8d_fk_auth_user_id">
       <ObjectId>20930</ObjectId>
       <StateNumber>2519</StateNumber>
       <ColNames>owner_id</ColNames>
@@ -2068,7 +2075,7 @@ model</ColNames>
       <RefKeyName>auth_user_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="174" parent="60" name="id">
+    <column id="175" parent="60" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -2076,21 +2083,21 @@ model</ColNames>
       <DefaultExpression>nextval(&apos;truck_app_like_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="175" parent="60" name="truck_id">
+    <column id="176" parent="60" name="truck_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>2260</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="176" parent="60" name="owner_id">
+    <column id="177" parent="60" name="owner_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>2520</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="177" parent="60" name="truck_app_like_pkey">
+    <index id="178" parent="60" name="truck_app_like_pkey">
       <ObjectId>20888</ObjectId>
       <StateNumber>2260</StateNumber>
       <ColNames>id</ColNames>
@@ -2100,7 +2107,7 @@ model</ColNames>
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <index id="178" parent="60" name="truck_app_like_truck_id_12717a8a">
+    <index id="179" parent="60" name="truck_app_like_truck_id_12717a8a">
       <ObjectId>20895</ObjectId>
       <StateNumber>2260</StateNumber>
       <ColNames>truck_id</ColNames>
@@ -2108,7 +2115,7 @@ model</ColNames>
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <index id="179" parent="60" name="truck_app_like_owner_id_2b524da6">
+    <index id="180" parent="60" name="truck_app_like_owner_id_2b524da6">
       <ObjectId>20942</ObjectId>
       <StateNumber>2520</StateNumber>
       <ColNames>owner_id</ColNames>
@@ -2116,14 +2123,14 @@ model</ColNames>
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="180" parent="60" name="truck_app_like_pkey">
+    <key id="181" parent="60" name="truck_app_like_pkey">
       <ObjectId>20889</ObjectId>
       <StateNumber>2260</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>truck_app_like_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="181" parent="60" name="truck_app_like_truck_id_12717a8a_fk_truck_app_truck_id">
+    <foreign-key id="182" parent="60" name="truck_app_like_truck_id_12717a8a_fk_truck_app_truck_id">
       <ObjectId>20890</ObjectId>
       <StateNumber>2260</StateNumber>
       <ColNames>truck_id</ColNames>
@@ -2135,7 +2142,7 @@ model</ColNames>
       <RefKeyName>truck_app_truck_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="182" parent="60" name="truck_app_like_owner_id_2b524da6_fk_auth_user_id">
+    <foreign-key id="183" parent="60" name="truck_app_like_owner_id_2b524da6_fk_auth_user_id">
       <ObjectId>20937</ObjectId>
       <StateNumber>2520</StateNumber>
       <ColNames>owner_id</ColNames>
@@ -2147,7 +2154,7 @@ model</ColNames>
       <RefKeyName>auth_user_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="183" parent="61" name="id">
+    <column id="184" parent="61" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -2155,56 +2162,56 @@ model</ColNames>
       <DefaultExpression>nextval(&apos;truck_app_truck_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="184" parent="61" name="nickname">
+    <column id="185" parent="61" name="nickname">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>1870</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="185" parent="61" name="make">
+    <column id="186" parent="61" name="make">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>1870</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="186" parent="61" name="model">
+    <column id="187" parent="61" name="model">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>1870</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="187" parent="61" name="description">
+    <column id="188" parent="61" name="description">
       <Position>5</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>1870</StateNumber>
       <TypeId>25</TypeId>
     </column>
-    <column id="188" parent="61" name="image">
+    <column id="189" parent="61" name="image">
       <Position>8</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>2848</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="189" parent="61" name="owner_id">
+    <column id="190" parent="61" name="owner_id">
       <Position>9</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>2848</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="190" parent="61" name="price">
+    <column id="191" parent="61" name="price">
       <Position>10</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>2848</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="191" parent="61" name="truck_app_truck_pkey">
+    <index id="192" parent="61" name="truck_app_truck_pkey">
       <ObjectId>20796</ObjectId>
       <StateNumber>2848</StateNumber>
       <ColNames>id</ColNames>
@@ -2214,7 +2221,7 @@ model</ColNames>
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <index id="192" parent="61" name="truck_app_truck_owner_id_d46f6a5c">
+    <index id="193" parent="61" name="truck_app_truck_owner_id_d46f6a5c">
       <ObjectId>20928</ObjectId>
       <StateNumber>2848</StateNumber>
       <ColNames>owner_id</ColNames>
@@ -2222,14 +2229,14 @@ model</ColNames>
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="193" parent="61" name="truck_app_truck_pkey">
+    <key id="194" parent="61" name="truck_app_truck_pkey">
       <ObjectId>20797</ObjectId>
       <StateNumber>1870</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>truck_app_truck_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="194" parent="61" name="truck_app_truck_owner_id_d46f6a5c_fk_auth_user_id">
+    <foreign-key id="195" parent="61" name="truck_app_truck_owner_id_d46f6a5c_fk_auth_user_id">
       <ObjectId>20923</ObjectId>
       <StateNumber>2514</StateNumber>
       <ColNames>owner_id</ColNames>
@@ -2241,7 +2248,7 @@ model</ColNames>
       <RefKeyName>auth_user_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="195" parent="62" name="id">
+    <column id="196" parent="62" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -2249,28 +2256,28 @@ model</ColNames>
       <DefaultExpression>nextval(&apos;truck_auth_userprofile_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="196" parent="62" name="phone_number">
+    <column id="197" parent="62" name="phone_number">
       <Position>2</Position>
       <DataType>varchar(13)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>2849</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="197" parent="62" name="city">
+    <column id="198" parent="62" name="city">
       <Position>3</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>2798</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="198" parent="62" name="user_id">
+    <column id="199" parent="62" name="user_id">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>2798</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="199" parent="62" name="truck_auth_userprofile_pkey">
+    <index id="200" parent="62" name="truck_auth_userprofile_pkey">
       <ObjectId>21000</ObjectId>
       <StateNumber>2849</StateNumber>
       <ColNames>id</ColNames>
@@ -2280,7 +2287,7 @@ model</ColNames>
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <index id="200" parent="62" name="truck_auth_userprofile_user_id_key">
+    <index id="201" parent="62" name="truck_auth_userprofile_user_id_key">
       <ObjectId>21002</ObjectId>
       <StateNumber>2849</StateNumber>
       <ColNames>user_id</ColNames>
@@ -2289,20 +2296,20 @@ model</ColNames>
       <CollationIds>0</CollationIds>
       <ClassIds>1978</ClassIds>
     </index>
-    <key id="201" parent="62" name="truck_auth_userprofile_pkey">
+    <key id="202" parent="62" name="truck_auth_userprofile_pkey">
       <ObjectId>21001</ObjectId>
       <StateNumber>2798</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>truck_auth_userprofile_pkey</UnderlyingIndexName>
     </key>
-    <key id="202" parent="62" name="truck_auth_userprofile_user_id_key">
+    <key id="203" parent="62" name="truck_auth_userprofile_user_id_key">
       <ObjectId>21003</ObjectId>
       <StateNumber>2798</StateNumber>
       <ColNames>user_id</ColNames>
       <UnderlyingIndexName>truck_auth_userprofile_user_id_key</UnderlyingIndexName>
     </key>
-    <foreign-key id="203" parent="62" name="truck_auth_userprofile_user_id_17354ef7_fk_auth_user_id">
+    <foreign-key id="204" parent="62" name="truck_auth_userprofile_user_id_17354ef7_fk_auth_user_id">
       <ObjectId>21004</ObjectId>
       <StateNumber>2798</StateNumber>
       <ColNames>user_id</ColNames>

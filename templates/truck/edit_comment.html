@@ -1,0 +1,24 @@
+{% extends 'shared/base.html' %}
+
+{% block h1_content %}
+    Edit Comment
+{% endblock %}
+
+{% block base_content %}
+    <div class="container">
+        <form style="opacity: 80%" class="col-lg-6 offset-lg-3" method="POST"
+              action="{% url 'edit comment' comment.id %}">
+            {% csrf_token %}
+            <h6 style="color: white">{{ form.errors }}</h6>
+            <div class="form-group">
+
+                <label for="nickname" style="color: aliceblue">Text</label>
+                {{ form.text }}
+
+            </div>
+            <input type="submit" value="Edit" class="btn btn-dark mt-2">
+            <a class="btn btn-dark mt-2" href="javascript:history.back()">Back</a>
+        </form>
+    </div>
+
+{% endblock %}

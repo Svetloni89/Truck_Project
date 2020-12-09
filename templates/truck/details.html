@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <div class="d-block" style="background-color: #a0a0a2; padding:1%; opacity: 70%">
+        <div class="d-block" style="background-color: #a0a0a2; padding:1%; opacity: 80%">
             <form method="post" action="{% url 'details page' truck.id %}">
                 <label for="model"><h6>Ride your comment</h6></label>
                 {% csrf_token %}
@@ -55,14 +55,24 @@
                 <button class="btn btn-dark mt-2" type="submit">Add comment</button>
             </form>
             {% if comments %}
-                <div>
-                    <div>Comments:</div>
-                    {% for comment in comments %}
+                <div>Comments:</div>
+                {% for comment in comments %}
+                    {% if comment.owner == user %}
                         <div class="box">
-                            <h6><em>{{ comment.time }} ---> {{ comment.owner.username }}: {{ comment.text }}</em></h6>
+                            <h6><em>{{ comment.time }} ---> {{ comment.owner.username }} --->
+                                {{ comment.text }} ---> <a href="{% url 'edit comment' comment.id %}"
+                                                      class="btn btn-dark btn-sm">edit</a> <a
+                                        href="{% url 'delete comment' comment.id %}"
+                                        class="btn btn-dark btn-sm">delete</a></em>
+                            </h6>
                         </div>
-                    {% endfor %}
-                </div>
+                    {% else %}
+                        <div class="box">
+                            <h6><em>{{ comment.time }} ---> {{ comment.owner.username }} ---> {{ comment.text }}</em>
+                            </h6>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             {% else %}
                 <div class="box">
                     <h4>There are no comments for this truck. </h4>

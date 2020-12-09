@@ -38,6 +38,27 @@ def create(request):
 
 
 @login_required
+def edit(request, pk):
+    truck = Truck.objects.get(pk=pk)
+    if request.method == 'GET':
+        context = {
+            'form': TruckForm(instance=truck),
+            'truck': truck,
+        }
+        return render(request, 'truck/edit.html', context)
+    else:
+        form = TruckForm(request.POST, request.FILES, instance=truck)
+        if form.is_valid():
+            form.save()
+            return redirect('details page', pk)
+        context = {
+            'form': form,
+            'truck': truck,
+        }
+        return render(request, 'truck/edit.html', context)
+
+
+@login_required
 def details_comment(request, pk):
     truck = Truck.objects.get(pk=pk)
     comments = truck.comment_set.all().order_by('-id')
@@ -64,6 +85,38 @@ def details_comment(request, pk):
         return render(request, 'truck/details.html', context)
 
 
+def edit_comment(request, pk):
+    comment = Comment.objects.get(pk=pk)
+    if request.method == "GET":
+        context = {
+            'comment': comment,
+            'form': CommentForm(instance=comment),
+        }
+        return render(request, 'truck/edit_comment.html', context)
+    else:
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('details page', comment.truck_id)
+        context = {
+            'comment': comment,
+            'form': form,
+        }
+        return render(request, 'truck/edit_comment.html', context)
+
+
+def delete_comment(request, pk):
+    comment = Comment.objects.get(pk=pk)
+    if request.method == 'GET':
+        context = {
+            'comment': comment,
+        }
+        return render(request, 'truck/delete_comment.html', context)
+    else:
+        comment.delete()
+        return redirect('details page', comment.truck_id)
+
+
 @login_required
 def like_truck(request, pk):
     like = Like.objects.filter(owner_id=request.user.id, truck_id=pk).first()
@@ -74,27 +127,6 @@ def like_truck(request, pk):
         like = Like(truck=truck, owner=request.user)
         like.save()
     return redirect('details page', pk)
-
-
-@login_required
-def edit(request, pk):
-    truck = Truck.objects.get(pk=pk)
-    if request.method == 'GET':
-        context = {
-            'form': TruckForm(instance=truck),
-            'truck': truck,
-        }
-        return render(request, 'truck/edit.html', context)
-    else:
-        form = TruckForm(request.POST, request.FILES, instance=truck)
-        if form.is_valid():
-            form.save()
-            return redirect('details page', pk)
-        context = {
-            'form': form,
-            'truck': truck,
-        }
-        return render(request, 'truck/edit.html', context)
 
 
 @login_required

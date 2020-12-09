@@ -1,0 +1,25 @@
+{% extends 'shared/base.html' %}
+
+{% block h1_content %}
+    Delete Comment
+{% endblock %}
+
+{% block base_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="m-auto d-flex justify-content-center">
+                    <div class="m-2">
+                        <form method="post" action="{% url 'delete comment' comment.id %}">
+                            {% csrf_token %}
+                            <input type="submit" value="Delete" class="btn btn-dark"/>
+                        </form>
+                    </div>
+                    <div class="m-2">
+                        <a class="btn btn-dark" href="javascript:history.back()">No, go back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
