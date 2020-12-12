@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.contrib.auth.models import User
 from django.db import models
 from truck_app.validators import validator_comment_end, validator_price_is_digit
@@ -17,6 +15,10 @@ class Truck(models.Model):
 
     def __str__(self):
         return f'{self.nickname}'
+
+    def delete(self, *args, **kwargs):
+        self.image.delete()
+        super().delete(*args, **kwargs)
 
 
 class Comment(models.Model):
