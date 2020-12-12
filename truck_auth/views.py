@@ -1,12 +1,9 @@
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from django.urls import reverse_lazy
 
 from truck_auth.forms import LoginForm, RegisterForm, UserProfileForm
 from truck_auth.models import UserProfile
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LogoutView
 
 
 def login_user(request):
