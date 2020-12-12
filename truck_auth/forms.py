@@ -44,5 +44,5 @@ class UserProfileForm(forms.ModelForm):
         exclude = ('user',)
         widgets = {
             'phone_number': forms.TextInput(attrs={'placeholder': 'Only numeric', }),
-            'city': forms.TextInput(attrs={'placeholder': 'City of locations', })
+            'city': forms.TextInput(attrs={'placeholder': 'City of location', })
         }
