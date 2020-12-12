@@ -10,7 +10,7 @@ from django.views.generic import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class TrucksListView(LoginRequiredMixin, ListView):
+class TrucksListView(ListView):
     template_name = 'index.html'
     context_object_name = 'trucks'
     ordering = 'make'
