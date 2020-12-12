@@ -1,14 +1,15 @@
 from django.urls import path
 
-from truck_app.views import index, create, details_comment, edit, like_truck, delete, edit_comment, delete_comment
+from .views import *
 
 urlpatterns = [
-    path('', index, name='home page'),
-    path('create/', create, name='create page'),
+    path('', TrucksListView.as_view(), name='home page'),
+    path('create/', TruckCreateView.as_view(), name='create page'),
+    path('details/edit/<int:pk>/', TruckEditView.as_view(), name='edit page'),
+    path('details/delete/<int:pk>/', DeleteTruckView.as_view(), name='delete page'),
+    path('edit_comment/<int:pk>/', CommentEditView.as_view(), name='edit comment'),
+    path('delete_comment/<int:pk>/', CommentDeleteView.as_view(), name='delete comment'),
+
     path('details/<int:pk>/', details_comment, name='details page'),
-    path('edit_comment/<int:pk>/', edit_comment, name='edit comment'),
-    path('delete_comment/<int:pk>/', delete_comment, name='delete comment'),
     path('details/like/<int:pk>/', like_truck, name='like post'),
-    path('details/edit/<int:pk>/', edit, name='edit page'),
-    path('details/delete/<int:pk>/', delete, name='delete page'),
 ]

@@ -2,60 +2,58 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from django.urls import reverse_lazy
+
 from truck_app.forms import TruckForm, CommentForm
 from truck_app.models import Truck, Comment, Like
+from django.views.generic import *
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-def index(request):
-    trucks = Truck.objects.all().order_by('make')
-    context = {
-        'trucks': trucks,
-        'page_name': 'home page',
-    }
-    return render(request, 'index.html', context)
+class TrucksListView(LoginRequiredMixin, ListView):
+    template_name = 'index.html'
+    context_object_name = 'trucks'
+    ordering = 'make'
+    model = Truck
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_name'] = 'home page'
+        return context
 
 
-@login_required
-def create(request):
-    if request.method == 'GET':
-        context = {
-            'form': TruckForm(),
-            'page_name': 'create page',
-        }
-        return render(request, 'truck/create.html', context)
-    else:
-        form = TruckForm(request.POST, request.FILES)
-        if form.is_valid():
-            truck = form.save(commit=False)
-            truck.owner = request.user
-            truck.save()
-            return redirect('home page')
-        context = {
-            'form': form,
-            'page_name': 'create page',
-        }
-        return render(request, 'truck/create.html', context)
+class TruckCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'truck/create.html'
+    form_class = TruckForm
+    model = Truck
+    success_url = reverse_lazy('home page')
+
+    def form_valid(self, form):
+        truck = form.save(commit=False)
+        truck.owner = self.request.user
+        truck.save()
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_name'] = 'create page'
+        return context
 
 
-@login_required
-def edit(request, pk):
-    truck = Truck.objects.get(pk=pk)
-    if request.method == 'GET':
-        context = {
-            'form': TruckForm(instance=truck),
-            'truck': truck,
-        }
-        return render(request, 'truck/edit.html', context)
-    else:
-        form = TruckForm(request.POST, request.FILES, instance=truck)
-        if form.is_valid():
-            form.save()
-            return redirect('details page', pk)
-        context = {
-            'form': form,
-            'truck': truck,
-        }
-        return render(request, 'truck/edit.html', context)
+class TruckEditView(LoginRequiredMixin, UpdateView):
+    template_name = 'truck/edit.html'
+    form_class = TruckForm
+    model = Truck
+
+    def get_success_url(self):
+        url = reverse_lazy('details page', kwargs={'pk': self.object.id})
+        return url
+
+
+class DeleteTruckView(LoginRequiredMixin, DeleteView):
+    template_name = 'truck/delete.html'
+    model = Truck
+    success_url = reverse_lazy('home page')
 
 
 @login_required
@@ -85,36 +83,23 @@ def details_comment(request, pk):
         return render(request, 'truck/details.html', context)
 
 
-def edit_comment(request, pk):
-    comment = Comment.objects.get(pk=pk)
-    if request.method == "GET":
-        context = {
-            'comment': comment,
-            'form': CommentForm(instance=comment),
-        }
-        return render(request, 'truck/edit_comment.html', context)
-    else:
-        form = CommentForm(request.POST, instance=comment)
-        if form.is_valid():
-            form.save()
-            return redirect('details page', comment.truck_id)
-        context = {
-            'comment': comment,
-            'form': form,
-        }
-        return render(request, 'truck/edit_comment.html', context)
+class CommentEditView(LoginRequiredMixin, UpdateView):
+    template_name = 'truck/edit_comment.html'
+    form_class = CommentForm
+    model = Comment
+
+    def get_success_url(self):
+        url = reverse_lazy('details page', kwargs={'pk': self.object.truck_id})
+        return url
 
 
-def delete_comment(request, pk):
-    comment = Comment.objects.get(pk=pk)
-    if request.method == 'GET':
-        context = {
-            'comment': comment,
-        }
-        return render(request, 'truck/delete_comment.html', context)
-    else:
-        comment.delete()
-        return redirect('details page', comment.truck_id)
+class CommentDeleteView(LoginRequiredMixin, DeleteView):
+    template_name = 'truck/delete_comment.html'
+    model = Comment
+
+    def get_success_url(self):
+        url = reverse_lazy('details page', kwargs={'pk': self.object.truck_id})
+        return url
 
 
 @login_required
@@ -127,18 +112,3 @@ def like_truck(request, pk):
         like = Like(truck=truck, owner=request.user)
         like.save()
     return redirect('details page', pk)
-
-
-@login_required
-def delete(request, pk):
-    truck = Truck.objects.get(pk=pk)
-    if request.method == 'GET':
-        context = {
-            'truck': truck,
-        }
-        return render(request, 'truck/delete.html', context)
-    else:
-        if truck.image:
-            truck.image.delete()
-        truck.delete()
-        return redirect('home page')
